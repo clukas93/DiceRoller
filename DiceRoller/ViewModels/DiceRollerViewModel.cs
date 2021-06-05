@@ -14,7 +14,7 @@ namespace DiceRoller.ViewModels
         #region hide
         public DiceRollerViewModel()
         {
-            ButtonPressCommand = new RelayCommand(ExecuteButtonPressCommand);
+            ButtonPressCommand = new RelayCommand<string>(ExecuteButtonPressCommand);
             int x = 2;
             if(x == 2)
             {
@@ -31,9 +31,20 @@ namespace DiceRoller.ViewModels
 
 
         public ICommand ButtonPressCommand { private set; get; }
-        private void ExecuteButtonPressCommand()
+        private void ExecuteButtonPressCommand(string button)
         {
-            // functionality goes here
+            if (button == "Clear")
+            {
+                RollDisplay = string.Empty;
+            }
+            else if (button == "Log")
+            {
+                // Here is where the log box would pop up
+            }
+            else
+            {
+                RollDisplay = button;
+            }
         }
 
         /*
@@ -70,7 +81,7 @@ namespace DiceRoller.ViewModels
             set
             {
                 _rollDisplay = value;
-                RaisePropertyChanged("Display");
+                RaisePropertyChanged("RollDisplay");
             }
         }
 
