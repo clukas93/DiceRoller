@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DiceRoller"
         DataContext="{StaticResource DiceRollerViewModel}"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="800" Width="450">
+        Title="DiceRoller" Height="800" Width="450">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock  Name="DisplayBox" Text="{Binding Path=RollDisplay, Mode=TwoWay}" Margin="20,10,20,2" Grid.ColumnSpan="3" FontSize="72" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <TextBlock  Name="LogBox" Margin="20,10,20,2" Grid.ColumnSpan="3" Grid.Row="1" FontSize="24" TextAlignment="Center" VerticalAlignment="Center">6 + 1 + 5</TextBlock>
+        <TextBlock  Name="LogBox" Text="{Binding Path=LogDisplay, Mode=TwoWay}" Margin="20,10,20,2" Grid.ColumnSpan="3" Grid.Row="1" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
 
         <Button Name="D100" Grid.Column="0" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="100" >100</Button>
         <Button Name="D20" Grid.Column="1" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="20">20</Button>

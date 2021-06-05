@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Text;
 using System.ComponentModel;
+using DiceRoller.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -15,18 +16,11 @@ namespace DiceRoller.ViewModels
         public DiceRollerViewModel()
         {
             ButtonPressCommand = new RelayCommand<string>(ExecuteButtonPressCommand);
-            int x = 2;
-            if(x == 2)
-            {
-                Title = "X is 2";
-            }
-            else
-            {
-                Title = "X is not 2";
-            }
+            RollDisplay = string.Empty;
+            LogDisplay = string.Empty;
+
         }
 
-        public string Title { get; set; }
         #endregion
 
 
@@ -36,43 +30,22 @@ namespace DiceRoller.ViewModels
             if (button == "Clear")
             {
                 RollDisplay = string.Empty;
+                LogDisplay = string.Empty;
             }
             else if (button == "Log")
             {
-                // Here is where the log box would pop up
+                // Here is where the log box would pop up 
             }
             else
             {
-                RollDisplay = button;
+                // TK second num is test number of rolls, need to change so user can select
+                DieRollModel roll = new DieRollModel(ToInt(button), 3);
+                roll.Roll();
+                RollDisplay = roll.Result.ToString();
+                LogDisplay = roll.RollLog;
             }
         }
 
-        /*
-        RelayCommand _testCommand;
-        public ICommand TestCommand
-        {
-            get
-            {
-                if (_testCommand == null)
-                {
-                    _testCommand = new RelayCommand(
-                        param => ExecuteButtonPressCommand(),
-                        param => 1);
-                }
-                return _testCommand;
-            }
-        }
-        //ButtonPressCommand = new RelayCommand(ExecuteButtonPressCommand);
-        public ICommand ButtonPressCommand
-        {
-            private set; get;
-        }
-
-        private void ExecuteButtonPressCommand()
-        {
-
-        }
-        */
         #region hide
         private string _rollDisplay;
         public string RollDisplay
@@ -85,9 +58,37 @@ namespace DiceRoller.ViewModels
             }
         }
 
-        public void FindRollDisplay(string button)
+        private string _logDisplay;
+        public string LogDisplay
         {
+            get { return _logDisplay; }
+            set
+            {
+                _logDisplay = value;
+                RaisePropertyChanged("LogDisplay");
+            }
+        }
 
+        #endregion
+
+        #region Private Helpers
+        /// <summary>
+        /// Converts a string to int32
+        /// </summary>
+        /// <param name="str">a string to convert</param>
+        /// <returns>the string converted to an int</returns>
+        private int ToInt(string str)
+        {
+            bool isParsable = Int32.TryParse(str, out int number);
+
+            if (isParsable)
+            {
+                return number;
+            }
+            else
+            {
+                throw new ArgumentException("Parameter cannot be parsed to int", nameof(str));
+            }
         }
         #endregion
     }
