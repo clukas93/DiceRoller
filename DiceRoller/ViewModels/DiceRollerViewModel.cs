@@ -30,16 +30,26 @@ namespace DiceRoller.ViewModels
             if (button == "Clear")
             {
                 RollDisplay = string.Empty;
-                LogDisplay = string.Empty;
+                LogDisplay = string.Empty; 
             }
             else if (button == "Log")
             {
                 // Here is where the log box would pop up 
             }
+            else if (button == "00")
+            {
+                // 10 is the number of the d10 percentile die
+                // it's the only percentile die in a standard dice set so it will always be 10
+                // TK second num is test number of rolls, need to change so user can select
+                DieTenPercentileModel roll = new DieTenPercentileModel(10, 3);
+                roll.Roll();
+                RollDisplay = roll.Result.ToString();
+                LogDisplay = roll.RollLog;
+            }
             else
             {
                 // TK second num is test number of rolls, need to change so user can select
-                DieRollModel roll = new DieRollModel(ToInt(button), 3);
+                DieModel roll = new DieModel(ToInt(button), 3);
                 roll.Roll();
                 RollDisplay = roll.Result.ToString();
                 LogDisplay = roll.RollLog;

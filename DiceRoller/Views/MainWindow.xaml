@@ -30,11 +30,12 @@
         <Button Name="D12" Grid.Column="2" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="12">12</Button>
 
         <Button Name="D10" Grid.Column="0" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="10">10</Button>
-        <Button Name="D8" Grid.Column="1" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="8">8</Button>
-        <Button Name="D6" Grid.Column="3" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="6">6</Button>
+        <Button Name="D10Percentile" Grid.Column="1" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="00">00</Button>
+        <Button Name="D8" Grid.Column="2" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="8">8</Button>
 
-        <Button Name="D4" Grid.Row="4" Grid.ColumnSpan="2" Margin="75,0,75,0" Command="{Binding ButtonPressCommand}" CommandParameter="4">4</Button>
-        <Button Name="D2" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="75,0,75,0" Command="{Binding ButtonPressCommand}" CommandParameter="2">2</Button>
+        <Button Name="D6" Grid.Column="0" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="6">6</Button>
+        <Button Name="D4" Grid.Column="1" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="4">4</Button>
+        <Button Name="D2" Grid.Column="2" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="2">2</Button>
 
         <ComboBox Name="RollMultiple" Grid.Column="0" Grid.Row="5"></ComboBox>
         <Button Name="Clear" Grid.Column="1" Grid.Row="5" Command="{Binding ButtonPressCommand}" CommandParameter="Clear">Clear</Button>
