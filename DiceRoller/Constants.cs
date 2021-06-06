@@ -15,4 +15,9 @@ namespace DiceRoller
         TWENTY = 20,
         ONE_HUNDRED = 100
     }
+
+    internal static class DiceRollerConstants
+    {
+        public static int MAX_ROLLS = 10;
+    }
 }

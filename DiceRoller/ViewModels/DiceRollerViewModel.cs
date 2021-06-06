@@ -4,26 +4,64 @@ using System.Windows;
 using System.Windows.Input;
 using System.Text;
 using System.ComponentModel;
+using System.Collections;
 using DiceRoller.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System.Collections.ObjectModel;
 
 namespace DiceRoller.ViewModels
 {
     class DiceRollerViewModel : ViewModelBase
     {
-        #region hide
+        #region Constructor
         public DiceRollerViewModel()
         {
             ButtonPressCommand = new RelayCommand<string>(ExecuteButtonPressCommand);
             RollDisplay = string.Empty;
             LogDisplay = string.Empty;
 
+            // 1 is the default number of rolls
+            SelectedNumberRolls = 1;
+            NumberRolls = new ObservableCollection<int>();
+            for(int i = 1; i <= DiceRollerConstants.MAX_ROLLS; i++)
+            {
+                NumberRolls.Add(i);
+            }
         }
 
         #endregion
 
+        #region Change Number of Rolls (combobox)
+        private ObservableCollection<int> _numberRolls;
+        public ObservableCollection<int> NumberRolls
+        {
+            get 
+            {
+                return _numberRolls;
+            }
+            set
+            {
+                _numberRolls = value;
+            }
+        }
 
+        private int _selectedNumberRolls;
+        public int SelectedNumberRolls
+        {
+            get
+            {
+                return _selectedNumberRolls;
+            }
+            set
+            {
+                _selectedNumberRolls = value;
+                RaisePropertyChanged("SelectedNumberRolls");
+            }
+        }
+        #endregion
+
+        #region Roll
         public ICommand ButtonPressCommand { private set; get; }
         private void ExecuteButtonPressCommand(string button)
         {
@@ -49,14 +87,15 @@ namespace DiceRoller.ViewModels
             else
             {
                 // TK second num is test number of rolls, need to change so user can select
-                DieModel roll = new DieModel(ToInt(button), 3);
+                DieModel roll = new DieModel(ToInt(button), SelectedNumberRolls);
                 roll.Roll();
                 RollDisplay = roll.Result.ToString();
                 LogDisplay = roll.RollLog;
             }
         }
+        #endregion
 
-        #region hide
+        #region Update Displays
         private string _rollDisplay;
         public string RollDisplay
         {
@@ -78,7 +117,6 @@ namespace DiceRoller.ViewModels
                 RaisePropertyChanged("LogDisplay");
             }
         }
-
         #endregion
 
         #region Private Helpers
