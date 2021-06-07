@@ -68,7 +68,9 @@ namespace DiceRoller.ViewModels
             if (button == "Clear")
             {
                 RollDisplay = string.Empty;
-                LogDisplay = string.Empty; 
+                LogDisplay = string.Empty;
+                // return selected rolls to default of 1
+                SelectedNumberRolls = 1;
             }
             else if (button == "Log")
             {
@@ -78,19 +80,25 @@ namespace DiceRoller.ViewModels
             {
                 // 10 is the number of the d10 percentile die
                 // it's the only percentile die in a standard dice set so it will always be 10
-                // TK second num is test number of rolls, need to change so user can select
-                DieTenPercentileModel roll = new DieTenPercentileModel(10, 3);
+                DieTenPercentileModel roll = new DieTenPercentileModel(10, SelectedNumberRolls);
                 roll.Roll();
                 RollDisplay = roll.Result.ToString();
                 LogDisplay = roll.RollLog;
             }
             else
             {
-                // TK second num is test number of rolls, need to change so user can select
-                DieModel roll = new DieModel(ToInt(button), SelectedNumberRolls);
-                roll.Roll();
-                RollDisplay = roll.Result.ToString();
-                LogDisplay = roll.RollLog;
+                // check if button is actual a valid die number
+                if (Enum.IsDefined(typeof(DieNumberEnum), ToInt(button)))
+                {
+                    DieModel roll = new DieModel(ToInt(button), SelectedNumberRolls);
+                    roll.Roll();
+                    RollDisplay = roll.Result.ToString();
+                    LogDisplay = roll.RollLog;
+                }
+                else
+                {
+                    throw new ArgumentException("Parameter is not a valid dice number", nameof(button));
+                }
             }
         }
         #endregion

@@ -12,8 +12,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\d20.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MvvmLight" Version="5.4.1.1" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\d20.png" />
   </ItemGroup>
 
 </Project>
