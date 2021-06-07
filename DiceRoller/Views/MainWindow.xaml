@@ -13,11 +13,31 @@
 
     <Window.Resources>
         <Style x:Key="DiceStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Border">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="1.0" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Background" Value="#04658b"/>
             <Setter Property="Foreground" Value="#0added" />
             <Setter Property="FontFamily" Value="Helvetica" />
@@ -35,8 +55,7 @@
 
             <Style.Triggers>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#04527c"/>
-                    <Setter Property="Foreground" Value="#04658b"/>
+                    <Setter Property="Opacity" Value="0.5" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -77,24 +96,47 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock  Name="DisplayBox" Text="{Binding Path=RollDisplay, Mode=TwoWay}" Margin="20,10,20,2" Grid.ColumnSpan="3" FontSize="72" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <TextBlock  Name="LogBox" Text="{Binding Path=LogDisplay, Mode=TwoWay}" Margin="20,10,20,2" Grid.ColumnSpan="3" Grid.Row="1" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock  Name="DisplayBox" Text="{Binding Path=RollDisplay}" Margin="20,10,20,2" Grid.ColumnSpan="3" FontSize="72" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock  Name="LogBox" Text="{Binding Path=LogDisplay}" Margin="20,10,20,2" Grid.ColumnSpan="3" Grid.Row="1" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
 
-        <Button Name="D100" Grid.Column="0" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="100" Style="{StaticResource DiceStyle}">100</Button>
-        
-        <Button Name="D20" Grid.Column="1" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="20" Style="{StaticResource DiceStyle}">
-            <Image Source="../Assets/d20.png"/>
+        <!-- Top Row of Dice Buttons-->
+        <Button Name="D100" Grid.Column="0" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="100" Style="{StaticResource DiceStyle}">
+            <Image Source="../Resources/d100.png"/>
         </Button>
 
-        <Button Name="D12" Grid.Column="2" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="12" Style="{StaticResource DiceStyle}">12</Button>
+        <Button Name="D20" Grid.Column="1" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="20" Style="{StaticResource DiceStyle}">
+            <Image Source="../Resources/d20.png"/>
+        </Button>
 
-        <Button Name="D10" Grid.Column="0" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="10" Style="{StaticResource DiceStyle}">10</Button>
-        <Button Name="D10Percentile" Grid.Column="1" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="00" Style="{StaticResource DiceStyle}">00</Button>
-        <Button Name="D8" Grid.Column="2" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="8" Style="{StaticResource DiceStyle}">8</Button>
+        <Button Name="D12" Grid.Column="2" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="12" Style="{StaticResource DiceStyle}">
+            <Image Source="../Resources/d12.png"/>
+        </Button>
 
-        <Button Name="D6" Grid.Column="0" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="6" Style="{StaticResource DiceStyle}">6</Button>
-        <Button Name="D4" Grid.Column="1" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="4" Style="{StaticResource DiceStyle}">4</Button>
-        <Button Name="D2" Grid.Column="2" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="2" Style="{StaticResource DiceStyle}">2</Button>
+        <!-- Middle Row of Dice Buttons-->
+        <Button Name="D10" Grid.Column="0" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="10" Style="{StaticResource DiceStyle}">
+            <Image Source="../Resources/d10.png"/>
+        </Button>
+
+        <Button Name="D10Percentile" Grid.Column="1" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="00" Style="{StaticResource DiceStyle}">
+            <Image Source="../Resources/d10Percentile.png"/>
+        </Button>
+
+        <Button Name="D8" Grid.Column="2" Grid.Row="3" Command="{Binding ButtonPressCommand}" CommandParameter="8" Style="{StaticResource DiceStyle}">
+            <Image Source="../Resources/d8.png"/>
+        </Button>
+
+        <!-- Bottom Row of Dice Buttons-->
+        <Button Name="D6" Grid.Column="0" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="6" Style="{StaticResource DiceStyle}">
+            <Image Source="../Resources/d6.png"/>
+        </Button>
+        
+        <Button Name="D4" Grid.Column="1" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="4" Style="{StaticResource DiceStyle}">
+            <Image Source="../Resources/d4.png"/>
+        </Button>
+        
+        <Button Name="D2" Grid.Column="2" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="2" Style="{StaticResource DiceStyle}">
+            <Image Source="../Resources/d2.png"/>
+        </Button>
 
         <ComboBox Name="RollMultiple" Grid.Column="0" Grid.Row="5" ItemsSource="{Binding Path=NumberRolls}" SelectedItem="{Binding Path=SelectedNumberRolls}"></ComboBox>
         <Button Name="Clear" Grid.Column="1" Grid.Row="5" Command="{Binding ButtonPressCommand}" CommandParameter="Clear" Style="{StaticResource ButtonStyle}">Clear</Button>

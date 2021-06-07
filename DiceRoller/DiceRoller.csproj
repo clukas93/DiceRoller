@@ -12,7 +12,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Assets\d20.png" />
+    <None Remove="Resources\d10.png" />
+    <None Remove="Resources\d100.png" />
+    <None Remove="Resources\d100_Pressed.png" />
+    <None Remove="Resources\d10Percentile.png" />
+    <None Remove="Resources\d10Percentile_Pressed.png" />
+    <None Remove="Resources\d10_Pressed.png" />
+    <None Remove="Resources\d12.png" />
+    <None Remove="Resources\d12_Pressed.png" />
+    <None Remove="Resources\d2.png" />
+    <None Remove="Resources\d20.png" />
+    <None Remove="Resources\d20_Pressed.png" />
+    <None Remove="Resources\d2_Pressed.png" />
+    <None Remove="Resources\d4.png" />
+    <None Remove="Resources\d4_Pressed.png" />
+    <None Remove="Resources\d6.png" />
+    <None Remove="Resources\d6_Pressed.png" />
+    <None Remove="Resources\d8.png" />
+    <None Remove="Resources\d8_Pressed.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +38,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\d20.png" />
+    <Resource Include="Resources\d10.png" />
+    <Resource Include="Resources\d100.png" />
+    <Resource Include="Resources\d10Percentile.png" />
+    <Resource Include="Resources\d12.png" />
+    <Resource Include="Resources\d2.png" />
+    <Resource Include="Resources\d20.png" />
+    <Resource Include="Resources\d4.png" />
+    <Resource Include="Resources\d6.png" />
+    <Resource Include="Resources\d8.png" />
   </ItemGroup>
 
 </Project>
