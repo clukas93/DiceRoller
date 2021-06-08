@@ -17,5 +17,8 @@ namespace RecordRollsLib
 
         [OperationContract]
         void SaveRollRecord();
+
+        [OperationContract]
+        void OpenRecordWindow();
     }
 }

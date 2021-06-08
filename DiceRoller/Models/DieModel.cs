@@ -6,7 +6,9 @@ namespace DiceRoller.Models
 {
     class DieModel : DieBaseClass
     {
+        #region Constructor
         public DieModel(int dieNumber, int numberOfRolls) : base(dieNumber, numberOfRolls) { }
+        #endregion
 
         #region Die Roll Functions
         /// <summary>

@@ -20,6 +20,7 @@ namespace DiceRoller.ViewModels
             ButtonPressCommand = new RelayCommand<string>(ExecuteButtonPressCommand);
             RollDisplay = string.Empty;
             LogDisplay = string.Empty;
+            History = string.Empty;
 
             // 1 is the default number of rolls
             SelectedNumberRolls = 1;
@@ -34,6 +35,10 @@ namespace DiceRoller.ViewModels
 
         #region Change Number of Rolls (combobox)
         private ObservableCollection<int> _numberRolls;
+        /// <summary>
+        /// NumberRolls is what displays in the ComboBox,
+        /// an ObservableCollection of ints from 1 to MAX_ROLLS
+        /// </summary>
         public ObservableCollection<int> NumberRolls
         {
             get 
@@ -47,6 +52,9 @@ namespace DiceRoller.ViewModels
         }
 
         private int _selectedNumberRolls;
+        /// <summary>
+        /// SelectedNumberRolls is the number that has been selected from the ComboBox
+        /// </summary>
         public int SelectedNumberRolls
         {
             get
@@ -63,6 +71,10 @@ namespace DiceRoller.ViewModels
 
         #region Roll
         public ICommand ButtonPressCommand { private set; get; }
+        /// <summary>
+        /// ExecuteButtonPressCommand executes the relevant action when a button is pressed
+        /// </summary>
+        /// <param name="button">A string representing the button</param>
         private void ExecuteButtonPressCommand(string button)
         {
             if (button == "Clear")
@@ -72,14 +84,15 @@ namespace DiceRoller.ViewModels
                 // return selected rolls to default of 1
                 SelectedNumberRolls = 1;
             }
-            else if (button == "Log")
+            else if (button == "History")
             {
-                // Here is where the log box would pop up 
+                // TK call service to display history
+                
             }
             else if (button == "00")
             {
                 // 10 is the number of the d10 percentile die
-                // it's the only percentile die in a standard dice set so it will always be 10
+                // it's the only percentile die in a standard dice set so its DieNumber will always be 10
                 DieTenPercentileModel roll = new DieTenPercentileModel(10, SelectedNumberRolls);
                 roll.Roll();
                 RollDisplay = roll.Result.ToString();
@@ -87,13 +100,14 @@ namespace DiceRoller.ViewModels
             }
             else
             {
-                // check if button is actual a valid die number
+                // Check if button is actual a valid die number
                 if (Enum.IsDefined(typeof(DieNumberEnum), ToInt(button)))
                 {
                     DieModel roll = new DieModel(ToInt(button), SelectedNumberRolls);
                     roll.Roll();
                     RollDisplay = roll.Result.ToString();
                     LogDisplay = roll.RollLog;
+                    // TK send roll string to service
                 }
                 else
                 {
@@ -123,6 +137,18 @@ namespace DiceRoller.ViewModels
             {
                 _logDisplay = value;
                 RaisePropertyChanged("LogDisplay");
+            }
+        }
+
+        // TK this is a stand-in for the history that will be implimented with a service
+        private string _history;
+        public string History
+        {
+            get { return _history; }
+            set
+            {
+                _history = "History does not exist yet";
+                RaisePropertyChanged("History");
             }
         }
         #endregion

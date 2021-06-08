@@ -12,6 +12,7 @@
         Background="#04527c">
 
     <Window.Resources>
+        <!-- Dice Buttons -->
         <Style x:Key="DiceStyle" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Cursor" Value="Hand" />
@@ -37,6 +38,7 @@
             </Setter>
         </Style>
 
+        <!-- Other Buttons -->
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Background" Value="#04658b"/>
@@ -62,11 +64,13 @@
             </Style.Triggers>
         </Style>
 
+        <!-- Roll Display Text -->
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#04275a"/>
             <Setter Property="FontSize" Value="125"/>
         </Style>
 
+        <!-- Roll Display Box -->
         <Style x:Key="DisplayBoxStyle" TargetType="Border">
             <Setter Property="BorderThickness" Value="10"/>
             <Setter Property="BorderBrush" Value="#04275a" />
@@ -74,15 +78,14 @@
             <Setter Property="CornerRadius" Value="5"/>
         </Style>
 
+        <!-- Log Display -->
         <Style x:Key="LogStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#0added"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
 
-
-
-
+        <!-- ComboBox -->
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
@@ -96,11 +99,14 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <!-- Roll Display & Log -->
             <RowDefinition Height="150"/>
             <RowDefinition Height="69"/>
+            <!-- Dice Buttons -->
             <RowDefinition Height="137"/>
             <RowDefinition Height="137"/>
             <RowDefinition Height="137"/>
+            <!-- Other Buttons and ComboBox -->
             <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
 
@@ -149,7 +155,7 @@
             <Image Source="../Resources/d2.png"/>
         </Button>
 
-        <!-- Bottom Buttons -->
+        <!-- Other Buttons and ComboBox -->
         <Grid Grid.Column="0" Grid.Row="5" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -164,7 +170,7 @@
 
         <Button Name="Clear" Grid.Column="1" Grid.Row="5" Command="{Binding ButtonPressCommand}" CommandParameter="Clear" Style="{StaticResource ButtonStyle}">Clear</Button>
 
-        <Button Name="Log" Grid.Column="2" Grid.Row="5" Style="{StaticResource ButtonStyle}">History</Button>
+        <Button Name="Log" Grid.Column="2" Grid.Row="5" Style="{StaticResource ButtonStyle}" Command="{Binding ButtonPressCommand}" CommandParameter="History">History</Button>
 
     </Grid>
 </Window>
