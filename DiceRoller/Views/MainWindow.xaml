@@ -17,6 +17,7 @@
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Margin" Value="5"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -41,8 +42,9 @@
             <Setter Property="Background" Value="#04658b"/>
             <Setter Property="Foreground" Value="#0added" />
             <Setter Property="FontFamily" Value="Helvetica" />
-            <Setter Property="Height" Value="35" />
-            <Setter Property="Width" Value="100" />
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Height" Value="75" />
+            <Setter Property="Width" Value="125" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -59,6 +61,24 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#04275a"/>
+            <Setter Property="FontSize" Value="125"/>
+        </Style>
+
+        <Style x:Key="DisplayBoxStyle" TargetType="Border">
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="BorderBrush" Value="#04275a" />
+            <Setter Property="Background" Value="#0added"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
+        <Style x:Key="LogStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#0added"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+
 
         <!--
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
@@ -81,7 +101,7 @@
     </Window.Resources>
 
 
-    <Grid>
+    <Grid Margin="20, 20, 20, 20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -89,15 +109,18 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
 
-        <TextBlock  Name="DisplayBox" Text="{Binding Path=RollDisplay}" Margin="20,10,20,2" Grid.ColumnSpan="3" FontSize="72" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <TextBlock  Name="LogBox" Text="{Binding Path=LogDisplay}" Margin="20,10,20,2" Grid.ColumnSpan="3" Grid.Row="1" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <!-- Display -->
+        <Border Grid.ColumnSpan="3" Style="{StaticResource DisplayBoxStyle}" >
+            <TextBlock  Name="DisplayBox" Text="{Binding Path=RollDisplay}" Margin="20,-30,20,0" Grid.ColumnSpan="3" TextAlignment="Center" VerticalAlignment="Top" Style="{StaticResource TextBlockStyle}"></TextBlock>
+        </Border>
+        <TextBlock  Name="LogBox" Text="{Binding Path=LogDisplay}" Margin="20,10,20,2" Grid.ColumnSpan="3" Grid.Row="1" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LogStyle}"></TextBlock>
 
         <!-- Top Row of Dice Buttons-->
         <Button Name="D100" Grid.Column="0" Grid.Row="2" Command="{Binding ButtonPressCommand}" CommandParameter="100" Style="{StaticResource DiceStyle}">
@@ -129,17 +152,30 @@
         <Button Name="D6" Grid.Column="0" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="6" Style="{StaticResource DiceStyle}">
             <Image Source="../Resources/d6.png"/>
         </Button>
-        
+
         <Button Name="D4" Grid.Column="1" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="4" Style="{StaticResource DiceStyle}">
             <Image Source="../Resources/d4.png"/>
         </Button>
-        
+
         <Button Name="D2" Grid.Column="2" Grid.Row="4" Command="{Binding ButtonPressCommand}" CommandParameter="2" Style="{StaticResource DiceStyle}">
             <Image Source="../Resources/d2.png"/>
         </Button>
 
-        <ComboBox Name="RollMultiple" Grid.Column="0" Grid.Row="5" ItemsSource="{Binding Path=NumberRolls}" SelectedItem="{Binding Path=SelectedNumberRolls}"></ComboBox>
+        <!-- Bottom Buttons -->
+        <Grid Grid.Column="0" Grid.Row="5" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Name="ComboBoxTitle" Grid.Column="0" Grid.Row="0"
+                       FontSize="15" TextAlignment="Center" VerticalAlignment="Center" Foreground="#0added" FontFamily="Helvetica">
+                Multiple Rolls
+            </TextBlock>
+            <ComboBox Name="RollMultiple" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding Path=NumberRolls}" SelectedItem="{Binding Path=SelectedNumberRolls}"></ComboBox>
+        </Grid>
+
         <Button Name="Clear" Grid.Column="1" Grid.Row="5" Command="{Binding ButtonPressCommand}" CommandParameter="Clear" Style="{StaticResource ButtonStyle}">Clear</Button>
+
         <Button Name="Log" Grid.Column="2" Grid.Row="5" Style="{StaticResource ButtonStyle}">History</Button>
 
     </Grid>
