@@ -33,7 +33,7 @@ namespace DiceRoller.Models
         /// <summary>
         /// Rolls the die once
         /// </summary>
-        /// <returns>A random value between 1 and the DieNumber (inclusive)</returns>
+        /// <returns>A random value between 10 and the DieNumber (inclusive)</returns>
         protected override int SingleRoll()
         {
             // Random number generator for SingleRoll()

@@ -77,27 +77,15 @@
         <Style x:Key="LogStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#0added"/>
             <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
 
 
-        <!--
+
+
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
-            <Setter Property="Background" Value="#04658b"/>
-            <Setter Property="Foreground" Value="#0added" />
-            <Setter Property="FontFamily" Value="Helvetica" />
-            <Setter Property="Height" Value="35" />
-            <Setter Property="Width" Value="100" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ComboBox">
-                        <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="2">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
-        -->
     </Window.Resources>
 
 
@@ -109,10 +97,10 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="140"/>
-            <RowDefinition Height="140"/>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="69"/>
+            <RowDefinition Height="137"/>
+            <RowDefinition Height="137"/>
+            <RowDefinition Height="137"/>
             <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
 
@@ -171,7 +159,7 @@
                        FontSize="15" TextAlignment="Center" VerticalAlignment="Center" Foreground="#0added" FontFamily="Helvetica">
                 Multiple Rolls
             </TextBlock>
-            <ComboBox Name="RollMultiple" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding Path=NumberRolls}" SelectedItem="{Binding Path=SelectedNumberRolls}"></ComboBox>
+            <ComboBox Name="RollMultiple" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding Path=NumberRolls}" SelectedItem="{Binding Path=SelectedNumberRolls}" Style="{DynamicResource ComboBoxStyle}" FontWeight="Normal" FontStyle="Normal"></ComboBox>
         </Grid>
 
         <Button Name="Clear" Grid.Column="1" Grid.Row="5" Command="{Binding ButtonPressCommand}" CommandParameter="Clear" Style="{StaticResource ButtonStyle}">Clear</Button>
