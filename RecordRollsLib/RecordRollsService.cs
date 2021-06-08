@@ -4,11 +4,18 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-namespace RecordRollsLib
+namespace RecordRolls
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
     public class RecordRollsService : IRecordRollsService
     {
-        private List<string> _rollList;
+        private static List<string> _rollList;
+
+        public RecordRollsService()
+        {
+            _rollList = new List<string> { };
+        }
+
 
         /// <summary>
         /// Adds rollStr to _rollList
@@ -20,12 +27,18 @@ namespace RecordRollsLib
         }
 
         /// <summary>
-        /// Returns list of previous rolls
+        /// Returns previous rolls
         /// </summary>
-        /// <returns>_rollList</returns>
-        public List<string> GetRollRecord()
+        /// <returns>a single concatinated string of previous rolls, delimited by \n</returns>
+        public string GetRollRecord()
         {
-            return _rollList;
+            string record = string.Empty;
+
+            for(int i = 0; i < _rollList.Count; i++)
+            {
+                record += _rollList[i] + '\n';
+            }
+            return record;
         }
 
         /// <summary>

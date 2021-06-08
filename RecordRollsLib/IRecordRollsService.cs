@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-namespace RecordRollsLib
+namespace RecordRolls
 {
     [ServiceContract]
     public interface IRecordRollsService
@@ -13,7 +13,7 @@ namespace RecordRollsLib
         void RecordRoll(string rollStr);
 
         [OperationContract]
-        List<string> GetRollRecord();
+        string GetRollRecord();
 
         [OperationContract]
         void SaveRollRecord();

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRoller", "DiceRoller\DiceRoller.csproj", "{A2D98B96-61E7-4638-8B72-AE00CB14DFB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordRollsLib", "RecordRollsLib\RecordRollsLib.csproj", "{580571FD-1126-410E-9D02-4FCBB2812821}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecordRolls", "RecordRollsLib\RecordRolls.csproj", "{580571FD-1126-410E-9D02-4FCBB2812821}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
