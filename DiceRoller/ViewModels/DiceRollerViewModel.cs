@@ -35,10 +35,8 @@ namespace DiceRoller.ViewModels
 
         #region Change Number of Rolls (combobox)
         private ObservableCollection<int> _numberRolls;
-        /// <summary>
-        /// NumberRolls is what displays in the ComboBox,
-        /// an ObservableCollection of ints from 1 to MAX_ROLLS
-        /// </summary>
+        // NumberRolls is what displays in the ComboBox,
+        // an ObservableCollection of ints from 1 to MAX_ROLLS
         public ObservableCollection<int> NumberRolls
         {
             get 
@@ -52,9 +50,7 @@ namespace DiceRoller.ViewModels
         }
 
         private int _selectedNumberRolls;
-        /// <summary>
-        /// SelectedNumberRolls is the number that has been selected from the ComboBox
-        /// </summary>
+        // SelectedNumberRolls is the number that has been selected from the ComboBox
         public int SelectedNumberRolls
         {
             get
@@ -103,7 +99,7 @@ namespace DiceRoller.ViewModels
                 // Check if button is actual a valid die number
                 if (Enum.IsDefined(typeof(DieNumberEnum), ToInt(button)))
                 {
-                    DieModel roll = new DieModel(ToInt(button), SelectedNumberRolls);
+                    DieStandardModel roll = new DieStandardModel(ToInt(button), SelectedNumberRolls);
                     roll.Roll();
                     RollDisplay = roll.Result.ToString();
                     LogDisplay = roll.RollLog;
@@ -119,6 +115,9 @@ namespace DiceRoller.ViewModels
 
         #region Update Displays
         private string _rollDisplay;
+        // RollDisplay is a string representing the total value of the current set of rolls
+        // ex. if the die was rolled 3 times with values of 4, 3, 7
+        // _rollDisplay = "14"
         public string RollDisplay
         {
             get { return _rollDisplay; }
@@ -130,6 +129,9 @@ namespace DiceRoller.ViewModels
         }
 
         private string _logDisplay;
+        // LogDisplay is a string showing each roll in the current set
+        // ex. if the die was rolled 3 times with values of 4, 3, 7
+        // _logDisplay = "4 + 3 + 7"
         public string LogDisplay
         {
             get { return _logDisplay; }

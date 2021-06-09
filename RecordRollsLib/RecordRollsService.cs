@@ -18,9 +18,9 @@ namespace RecordRolls
 
 
         /// <summary>
-        /// Adds rollStr to _rollList
+        /// Add dice roll representent as a string to _rollList 
         /// </summary>
-        /// <param name="rollStr">The last roll (ex. "2 + 4 + 1")</param>
+        /// <param name="rollStr">A dice roll string (ex. "2 + 4 + 1")</param>
         public void RecordRoll(string rollStr)
         {
             _rollList.Add(rollStr);
