@@ -114,10 +114,10 @@ namespace DiceRoller.ViewModels
             }
             else if (button == "History")
             {
-                // TK call service to display history
+                // Call service to display history
                 HistoryDisplay = _recordService.GetRollRecord();
 
-                if(IsHistoryOpen)
+                if (IsHistoryOpen)
                 {
                     WindowWidth = WindowSettings.WINDOW_STANDARD;
                     IsHistoryOpen = false;
@@ -128,31 +128,48 @@ namespace DiceRoller.ViewModels
                     IsHistoryOpen = true;
                 }
             }
-            else if (button == "00")
+            else if (button == "ClearHistory")
             {
-                // 10 is the number of the d10 percentile die
-                // it's the only percentile die in a standard dice set so its DieNumber will always be 10
-                DieTenPercentileModel roll = new DieTenPercentileModel(10, SelectedNumberRolls);
-                roll.Roll();
-                RollDisplay = roll.Result.ToString();
-                LogDisplay = roll.RollLog;
-                _recordService.RecordRoll(LogDisplay + " = " + RollDisplay);
+                // Call service to clear history
+                _recordService.ClearRollRecord();
+                HistoryDisplay = _recordService.GetRollRecord();
             }
             else
             {
-                // Check if button is actual a valid die number
-                if (Enum.IsDefined(typeof(DieNumberEnum), ToInt(button)))
+                // Roll selected die
+                if (button == "00")
                 {
-                    DieStandardModel roll = new DieStandardModel(ToInt(button), SelectedNumberRolls);
+                    // 10 is the number of the d10 percentile die
+                    // it's the only percentile die in a standard dice set so its DieNumber will always be 10
+                    DieTenPercentileModel roll = new DieTenPercentileModel(10, SelectedNumberRolls);
                     roll.Roll();
                     RollDisplay = roll.Result.ToString();
                     LogDisplay = roll.RollLog;
                     // TK send roll string to service
-                    _recordService.RecordRoll(LogDisplay + " = " + RollDisplay);
+                    _recordService.RecordRoll(LogDisplay + System.Environment.NewLine + "   = " + RollDisplay);
                 }
                 else
                 {
-                    throw new ArgumentException("Parameter is not a valid die number", nameof(button));
+                    // Check if button is actual a valid die number
+                    if (Enum.IsDefined(typeof(DieNumberEnum), ToInt(button)))
+                    {
+                        DieStandardModel roll = new DieStandardModel(ToInt(button), SelectedNumberRolls);
+                        roll.Roll();
+                        RollDisplay = roll.Result.ToString();
+                        LogDisplay = roll.RollLog;
+                        // TK send roll string to service
+                        _recordService.RecordRoll(LogDisplay + System.Environment.NewLine + "   = " + RollDisplay);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Parameter is not a valid die number", nameof(button));
+                    }
+                }
+
+                // update History Display if it's open
+                if (IsHistoryOpen)
+                {
+                    HistoryDisplay = _recordService.GetRollRecord();
                 }
             }
         }

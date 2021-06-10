@@ -28,11 +28,11 @@ namespace RollRecordServiceReference
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecordRollsService/GetRollRecord", ReplyAction="http://tempuri.org/IRecordRollsService/GetRollRecordResponse")]
         System.Threading.Tasks.Task<string> GetRollRecordAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecordRollsService/SaveRollRecord", ReplyAction="http://tempuri.org/IRecordRollsService/SaveRollRecordResponse")]
-        void SaveRollRecord();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecordRollsService/ClearRollRecord", ReplyAction="http://tempuri.org/IRecordRollsService/ClearRollRecordResponse")]
+        void ClearRollRecord();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecordRollsService/SaveRollRecord", ReplyAction="http://tempuri.org/IRecordRollsService/SaveRollRecordResponse")]
-        System.Threading.Tasks.Task SaveRollRecordAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRecordRollsService/ClearRollRecord", ReplyAction="http://tempuri.org/IRecordRollsService/ClearRollRecordResponse")]
+        System.Threading.Tasks.Task ClearRollRecordAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
@@ -105,14 +105,14 @@ namespace RollRecordServiceReference
             return base.Channel.GetRollRecordAsync();
         }
         
-        public void SaveRollRecord()
+        public void ClearRollRecord()
         {
-            base.Channel.SaveRollRecord();
+            base.Channel.ClearRollRecord();
         }
         
-        public System.Threading.Tasks.Task SaveRollRecordAsync()
+        public System.Threading.Tasks.Task ClearRollRecordAsync()
         {
-            return base.Channel.SaveRollRecordAsync();
+            return base.Channel.ClearRollRecordAsync();
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

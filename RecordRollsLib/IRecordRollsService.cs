@@ -16,6 +16,6 @@ namespace RecordRolls
         string GetRollRecord();
 
         [OperationContract]
-        void SaveRollRecord();
+        void ClearRollRecord();
     }
 }

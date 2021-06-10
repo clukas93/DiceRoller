@@ -42,11 +42,11 @@ namespace RecordRolls
         }
 
         /// <summary>
-        /// Saves _rollList in a text file
+        /// Removes everything in _rollList
         /// </summary>
-        public void SaveRollRecord()
+        public void ClearRollRecord()
         {
-            // TK to implement
+            _rollList.Clear();   
         }
     }
 }

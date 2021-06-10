@@ -69,12 +69,7 @@
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#04275a"/>
             <Setter Property="FontSize" Value="125"/>
-        </Style>
-
-        <!-- History Display Text -->
-        <Style x:Key="HistoryTextBlockStyle" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#04275a"/>
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontFamily" Value="Helvetica" />
         </Style>
 
         <!-- Roll Display Box -->
@@ -85,11 +80,19 @@
             <Setter Property="CornerRadius" Value="5"/>
         </Style>
 
+        <!-- History Display Text -->
+        <Style x:Key="HistoryTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#04275a"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontFamily" Value="Helvetica" />
+        </Style>
+
         <!-- Log Display Text -->
         <Style x:Key="LogStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#0added"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="Helvetica" />
         </Style>
 
         <!-- ComboBox -->
@@ -129,7 +132,7 @@
 
             <!-- Display -->
             <Border Grid.ColumnSpan="3" Style="{StaticResource DisplayBoxStyle}" >
-                <TextBlock  Name="DisplayBox" Text="{Binding Path=RollDisplay}" Margin="20,-30,20,0" Grid.ColumnSpan="3" TextAlignment="Center" VerticalAlignment="Top" Style="{StaticResource TextBlockStyle}"></TextBlock>
+                <TextBlock  Name="DisplayBox" Text="{Binding Path=RollDisplay}" Margin="0,15,0,0" Grid.ColumnSpan="3" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockStyle}"></TextBlock>
             </Border>
             <TextBlock  Name="LogBox" Text="{Binding Path=LogDisplay}" Margin="20,10,20,2" Grid.ColumnSpan="3" Grid.Row="1" TextAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LogStyle}"></TextBlock>
 
@@ -201,7 +204,7 @@
             </Grid.RowDefinitions>
 
             <Border Grid.Column="0" Grid.Row="0" Margin="20, 0, 20, 20" Style="{StaticResource DisplayBoxStyle}" >
-                <TextBlock Name="HistoryDisplayBox" Text="{Binding Path=HistoryDisplay}" TextAlignment="Left" VerticalAlignment="Top" Style="{StaticResource HistoryTextBlockStyle}" Margin="10"></TextBlock>
+                <TextBlock Name="HistoryDisplayBox" Text="{Binding Path=HistoryDisplay}" TextAlignment="Left" VerticalAlignment="Top" Style="{StaticResource HistoryTextBlockStyle}" Margin="10" TextWrapping="Wrap"></TextBlock>
             </Border>
 
             <Grid Grid.Row="1">
@@ -214,7 +217,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Button Name="ClearHistory" Grid.Column="1" Grid.Row="0" Style="{StaticResource ButtonStyle}" Width="175">Clear History</Button>
+                <Button Name="ClearHistory" Grid.Column="1" Grid.Row="0" Style="{StaticResource ButtonStyle}" Width="175" Command="{Binding ButtonPressCommand}" CommandParameter="ClearHistory">Clear History</Button>
 
             </Grid>
         </Grid>
