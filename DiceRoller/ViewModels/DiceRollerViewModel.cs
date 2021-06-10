@@ -9,18 +9,23 @@ using DiceRoller.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
+using System.ServiceModel;
+using RollRecordServiceReference;
 
 namespace DiceRoller.ViewModels
 {
     class DiceRollerViewModel : ViewModelBase
     {
+        public RollRecordServiceReference.RecordRollsServiceClient _recordService = new RecordRollsServiceClient();
+
         #region Constructor
         public DiceRollerViewModel()
         {
             ButtonPressCommand = new RelayCommand<string>(ExecuteButtonPressCommand);
             RollDisplay = string.Empty;
             LogDisplay = string.Empty;
-            History = string.Empty;
+            HistoryDisplay = string.Empty;
+            WindowWidth = WindowSettings.WINDOW_STANDARD;
 
             // 1 is the default number of rolls
             SelectedNumberRolls = 1;
@@ -65,6 +70,33 @@ namespace DiceRoller.ViewModels
         }
         #endregion
 
+        private bool _isHistoryOpen;
+        public bool IsHistoryOpen
+        {
+            get
+            {
+                return _isHistoryOpen;
+            }
+            set
+            {
+                _isHistoryOpen = value;
+            }
+        }
+
+        private int _windowWidth;
+        public int WindowWidth
+        {
+            get
+            {
+                return _windowWidth;
+            }
+            set
+            {
+                _windowWidth = value;
+                RaisePropertyChanged("WindowWidth");
+            }
+        }
+
         #region Roll
         public ICommand ButtonPressCommand { private set; get; }
         /// <summary>
@@ -83,7 +115,18 @@ namespace DiceRoller.ViewModels
             else if (button == "History")
             {
                 // TK call service to display history
-                
+                HistoryDisplay = _recordService.GetRollRecord();
+
+                if(IsHistoryOpen)
+                {
+                    WindowWidth = WindowSettings.WINDOW_STANDARD;
+                    IsHistoryOpen = false;
+                }
+                else
+                {
+                    WindowWidth = WindowSettings.WINDOW_WITH_HISTORY;
+                    IsHistoryOpen = true;
+                }
             }
             else if (button == "00")
             {
@@ -93,6 +136,7 @@ namespace DiceRoller.ViewModels
                 roll.Roll();
                 RollDisplay = roll.Result.ToString();
                 LogDisplay = roll.RollLog;
+                _recordService.RecordRoll(LogDisplay + " = " + RollDisplay);
             }
             else
             {
@@ -104,10 +148,11 @@ namespace DiceRoller.ViewModels
                     RollDisplay = roll.Result.ToString();
                     LogDisplay = roll.RollLog;
                     // TK send roll string to service
+                    _recordService.RecordRoll(LogDisplay + " = " + RollDisplay);
                 }
                 else
                 {
-                    throw new ArgumentException("Parameter is not a valid dice number", nameof(button));
+                    throw new ArgumentException("Parameter is not a valid die number", nameof(button));
                 }
             }
         }
@@ -143,14 +188,14 @@ namespace DiceRoller.ViewModels
         }
 
         // TK this is a stand-in for the history that will be implimented with a service
-        private string _history;
-        public string History
+        private string _historyDisplay;
+        public string HistoryDisplay
         {
-            get { return _history; }
+            get { return _historyDisplay; }
             set
             {
-                _history = "History does not exist yet";
-                RaisePropertyChanged("History");
+                _historyDisplay = _recordService.GetRollRecord();
+                RaisePropertyChanged("HistoryDisplay");
             }
         }
         #endregion

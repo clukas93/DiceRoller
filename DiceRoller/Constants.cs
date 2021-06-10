@@ -20,4 +20,10 @@ namespace DiceRoller
     {
         public static int MAX_ROLLS = 10;
     }
+
+    internal static class WindowSettings
+    {
+        public static int WINDOW_STANDARD = 450;
+        public static int WINDOW_WITH_HISTORY = 900;
+    }
 }

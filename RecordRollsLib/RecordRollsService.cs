@@ -48,13 +48,5 @@ namespace RecordRolls
         {
             // TK to implement
         }
-
-        /// <summary>
-        /// Opens a new window to displays all rolls in _rollList
-        /// </summary>
-        public void OpenRecordWindow()
-        {
-            // TK to implement
-        }
     }
 }
