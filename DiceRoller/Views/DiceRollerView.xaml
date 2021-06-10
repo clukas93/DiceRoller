@@ -99,6 +99,10 @@
         <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
+
+       <Style x:Key="ScrollViewerStyle" TargetType="ScrollViewer">
+            <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/>
+        </Style>
     </Window.Resources>
 
 
@@ -204,7 +208,9 @@
             </Grid.RowDefinitions>
 
             <Border Grid.Column="0" Grid.Row="0" Margin="20, 0, 20, 20" Style="{StaticResource DisplayBoxStyle}" >
-                <TextBlock Name="HistoryDisplayBox" Text="{Binding Path=HistoryDisplay}" TextAlignment="Left" VerticalAlignment="Top" Style="{StaticResource HistoryTextBlockStyle}" Margin="10" TextWrapping="Wrap"></TextBlock>
+                <ScrollViewer Style="{StaticResource ScrollViewerStyle}">
+                    <TextBlock Name="HistoryDisplayBox" Text="{Binding Path=HistoryDisplay}" TextAlignment="Left" VerticalAlignment="Top" Style="{StaticResource HistoryTextBlockStyle}" Margin="10" TextWrapping="Wrap"/>
+                </ScrollViewer>
             </Border>
 
             <Grid Grid.Row="1">

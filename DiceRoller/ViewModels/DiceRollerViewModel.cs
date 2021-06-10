@@ -146,7 +146,7 @@ namespace DiceRoller.ViewModels
                     RollDisplay = roll.Result.ToString();
                     LogDisplay = roll.RollLog;
                     // TK send roll string to service
-                    _recordService.RecordRoll(LogDisplay + System.Environment.NewLine + "   = " + RollDisplay);
+                    _recordService.RecordRoll(LogDisplay + System.Environment.NewLine + "   = " + RollDisplay + System.Environment.NewLine);
                 }
                 else
                 {
@@ -158,7 +158,7 @@ namespace DiceRoller.ViewModels
                         RollDisplay = roll.Result.ToString();
                         LogDisplay = roll.RollLog;
                         // TK send roll string to service
-                        _recordService.RecordRoll(LogDisplay + System.Environment.NewLine + "   = " + RollDisplay);
+                        _recordService.RecordRoll(LogDisplay + System.Environment.NewLine + "   = " + RollDisplay + System.Environment.NewLine);
                     }
                     else
                     {
