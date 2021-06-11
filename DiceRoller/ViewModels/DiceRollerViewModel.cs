@@ -70,7 +70,10 @@ namespace DiceRoller.ViewModels
         }
         #endregion
 
+        #region Window Properties
         private bool _isHistoryOpen;
+        // For history display toggle
+        // True if history display is open, false if not
         public bool IsHistoryOpen
         {
             get
@@ -84,6 +87,7 @@ namespace DiceRoller.ViewModels
         }
 
         private int _windowWidth;
+        // Changing this property changes the window width
         public int WindowWidth
         {
             get
@@ -96,6 +100,7 @@ namespace DiceRoller.ViewModels
                 RaisePropertyChanged("WindowWidth");
             }
         }
+        #endregion
 
         #region Roll
         public ICommand ButtonPressCommand { private set; get; }
@@ -151,7 +156,7 @@ namespace DiceRoller.ViewModels
                 else
                 {
                     // Check if button is actual a valid die number
-                    if (Enum.IsDefined(typeof(DieNumberEnum), ToInt(button)))
+                    if (Enum.IsDefined(typeof(StandardDieNumbers), ToInt(button)))
                     {
                         DieStandardModel roll = new DieStandardModel(ToInt(button), SelectedNumberRolls);
                         roll.Roll();

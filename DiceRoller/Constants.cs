@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DiceRoller
 {
-    public enum DieNumberEnum : int
+    public enum StandardDieNumbers : int
     {
         TWO = 2,
         FOUR = 4,
